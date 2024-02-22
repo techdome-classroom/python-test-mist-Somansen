@@ -1,18 +1,21 @@
-class Solution:
-def isValid(self, s: str) -> bool:
-stack
-o
-lookup = (")":"",")":"(", "]":"[">
+def isValid(s: str) -> bool:
+    stack = []
+    mapping = {')': '(', '}': '{', ']': '['}
 
-for p in S:
-if p in lookup.values():
-stack.append(p)
-elif stack and lookup[p] == stack[-1]:
-stack.pop()
-else:
-return False
-return stack == []
-    
+    for char in s:
+        if char in mapping:
+            top_element = stack.pop() if stack else '#'
+            if mapping[char] != top_element:
+                return False
+        else:
+            stack.append(char)
+
+    return not stack
+
+# Test cases
+print(isValid("()"))       # Output: True
+print(isValid("()[]{}"))   # Output: True
+print(isValid("(]"))       # Output: False
 
 
 
